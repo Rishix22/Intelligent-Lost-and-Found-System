@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FindIt | Lost & Found</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">Find<span>It</span></a>
+    <nav>
+      <a href="#browse">Browse items</a>
+      <a href="#report">Report an item</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">COMMUNITY LOST & FOUND</p>
+        <h1>Lost something?<br><span>Let's find it.</span></h1>
+        <p class="hero-text">Report lost and found belongings, browse reports, and discover possible matches with intelligent similarity search.</p>
+        <a class="primary-button" href="#report">Report an item</a>
+      </div>
+      <div class="hero-card">
+        <div class="hero-icon">⌕</div>
+        <h3>Smart matching</h3>
+        <p>Descriptions, categories and colors are compared to surface potentially matching reports.</p>
+      </div>
+    </section>
+
+    <section class="stats-grid" id="stats">
+      <div class="stat-card"><span>Lost reports</span><strong id="lost-count">—</strong><small id="lost-active">Active: —</small></div>
+      <div class="stat-card"><span>Found reports</span><strong id="found-count">—</strong><small id="found-active">Active: —</small></div>
+      <div class="stat-card"><span>Resolved reports</span><strong id="resolved-count">—</strong><small>Items marked as recovered</small></div>
+    </section>
+
+    <section class="section" id="report">
+      <div class="section-heading">
+        <div><p class="eyebrow">CONTRIBUTE</p><h2>Report an item</h2></div>
+        <p>Fields marked * are required.</p>
+      </div>
+      <form id="item-form" class="form-card">
+        <div class="form-grid">
+          <label>Report type *
+            <select name="item_type" required>
+              <option value="lost">I lost an item</option>
+              <option value="found">I found an item</option>
+            </select>
+          </label>
+          <label>Item name *
+            <input name="title" placeholder="e.g. Black leather wallet" required>
+          </label>
+          <label>Category *
+            <select name="category" required>
+              <option value="">Choose category</option>
+              <option>Electronics</option><option>Documents</option><option>Bags</option>
+              <option>Clothing</option><option>Accessories</option><option>Keys</option>
+              <option>Books</option><option>Other</option>
+            </select>
+          </label>
+          <label>Color
+            <input name="color" placeholder="e.g. Black">
+          </label>
+          <label class="wide">Description *
+            <textarea name="description" rows="3" placeholder="Describe identifying details..." required></textarea>
+          </label>
+          <label>Location *
+            <input name="location" placeholder="e.g. Library, Block A" required>
+          </label>
+          <label>Date lost/found
+            <input name="event_date" type="date">
+          </label>
+          <label>Contact name *
+            <input name="contact_name" required>
+          </label>
+          <label>Contact email *
+            <input name="contact_email" type="email" required>
+          </label>
+          <label class="wide">Item image (JPG, PNG or WEBP; max 5 MB)
+            <input name="image" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
+          </label>
+        </div>
+        <div class="form-footer">
+          <p id="form-message" role="status"></p>
+          <button class="primary-button" type="submit" id="submit-button">Submit report</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="section" id="browse">
+      <div class="section-heading">
+        <div><p class="eyebrow">RECENT REPORTS</p><h2>Browse items</h2></div>
+        <button class="text-button" id="refresh-button">Refresh ↻</button>
+      </div>
+      <div class="filters">
+        <input id="search-input" placeholder="Search title, description or location...">
+        <select id="type-filter">
+          <option value="">All reports</option><option value="lost">Lost</option><option value="found">Found</option>
+        </select>
+        <select id="category-filter">
+          <option value="">All categories</option>
+          <option>Electronics</option><option>Documents</option><option>Bags</option>
+          <option>Clothing</option><option>Accessories</option><option>Keys</option>
+          <option>Books</option><option>Other</option>
+        </select>
+      </div>
+      <div id="items-grid" class="items-grid"><p class="empty-state">Loading reports...</p></div>
+    </section>
+  </main>
+
+  <footer><span>FindIt</span> · Lost & Found Management System · MongoDB + PyMongo + FastAPI</footer>
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-panel">
+      <button class="modal-close" id="modal-close" aria-label="Close">×</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
