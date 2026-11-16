@@ -1,0 +1,3 @@
+# Install after requirements.txt to enable MobileNetV2 image feature extraction.
+# TensorFlow downloads pretrained ImageNet weights the first time the model is used.
+tensorflow>=2.20,<2.22
